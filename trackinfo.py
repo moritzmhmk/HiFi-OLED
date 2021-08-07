@@ -41,6 +41,7 @@ def draw_text(draw, text, y, font, tick):
 def render(title, artist, time_total, time_current, tick):
     img = Image.new("RGB", (128, 64))
     draw = ImageDraw.Draw(img)
+    # draw.rectangle((0, 0, 128, 64), fill=(42, 42, 42))
     draw.fontmode = "1"
     font_offset = -4
     title_font = ImageFont.truetype("OpenSans-Bold", 14)
@@ -67,7 +68,7 @@ if __name__ == "__main__":
     bg_img = Image.new("RGB", (bg_w, bg_h), color=(255, 255, 255))
     bg_draw = ImageDraw.Draw(bg_img)
     bg_draw.rounded_rectangle(
-        (margin, margin, rect_w, rect_h), fill="black", width=0, radius=20)
+        (margin, margin, rect_w + margin, rect_h + margin), fill="black", width=0, radius=20)
     for i in range(fps * length):
         frame = render("Could You Be Loved",
                        "Bob Marley & The Wailers", length, i//fps, i)
