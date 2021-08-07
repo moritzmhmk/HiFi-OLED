@@ -57,16 +57,23 @@ if __name__ == "__main__":
     fps = 10
     length = 42
 
-    bg_img = Image.new("RGB", (1024, 400), color=(255, 255, 255))
+    pixel_per_mm = 128 / 55
+    rect_w = round(300 * pixel_per_mm)
+    rect_h = round(70 * pixel_per_mm)
+    margin = round(10 * pixel_per_mm)
+    bg_w = rect_w + 2 * margin
+    bg_h = rect_h + 2 * margin
+
+    bg_img = Image.new("RGB", (bg_w, bg_h), color=(255, 255, 255))
     bg_draw = ImageDraw.Draw(bg_img)
-    bg_draw.rounded_rectangle((10, 10, 1024 - 20, 400 - 20),
-                              fill="black", width=0, radius=20)
+    bg_draw.rounded_rectangle(
+        (margin, margin, rect_w, rect_h), fill="black", width=0, radius=20)
     for i in range(fps * length):
         frame = render("Could You Be Loved",
                        "Bob Marley & The Wailers", length, i//fps, i)
         frame_with_bg = bg_img.copy()
-        frame_with_bg.paste(frame, ((1024-128)//2, (400-64)//2))
+        frame_with_bg.paste(frame, ((bg_w-128)//2, (bg_h-64)//2))
         frames.append(frame_with_bg)
 
-    frames[0].save('test.gif', format='GIF',
+    frames[0].save('demo.gif', format='GIF',
                    append_images=frames[1:], save_all=True, fps=fps, loop=0)
