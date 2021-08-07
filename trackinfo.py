@@ -51,21 +51,22 @@ def render(title, artist, time_total, time_current, tick):
     return img
 
 
-frames = []
-fps = 10
-length = 42
-
-bg_img = Image.new("RGB", (1024, 400), color=(255, 255, 255))
-bg_draw = ImageDraw.Draw(bg_img)
-bg_draw.rounded_rectangle((10, 10, 1024 - 20, 400 - 20),
-                          fill="black", width=0, radius=20)
-
 if __name__ == "__main__":
+
+    frames = []
+    fps = 10
+    length = 42
+
+    bg_img = Image.new("RGB", (1024, 400), color=(255, 255, 255))
+    bg_draw = ImageDraw.Draw(bg_img)
+    bg_draw.rounded_rectangle((10, 10, 1024 - 20, 400 - 20),
+                              fill="black", width=0, radius=20)
     for i in range(fps * length):
         frame = render("Could You Be Loved",
                        "Bob Marley & The Wailers", length, i//fps, i)
         frame_with_bg = bg_img.copy()
         frame_with_bg.paste(frame, ((1024-128)//2, (400-64)//2))
         frames.append(frame_with_bg)
+
     frames[0].save('test.gif', format='GIF',
                    append_images=frames[1:], save_all=True, fps=fps, loop=0)
