@@ -13,9 +13,9 @@ def draw_progress(draw, total, current):
     draw.rounded_rectangle((0, h-15, 127, h-15+4), fill="black", outline="white",
                            width=1, radius=4)
     draw.rectangle((1, h-15, current/total * 128, h-15+4), fill="white")
-    font = ImageFont.truetype("OpenSans-Light", 10)
+    font = ImageFont.truetype("DotMatrixDigits", 7)
     draw.text((0, h), duration(current), font=font, fill="white", anchor="ls")
-    draw.text((127, h), duration(total), font=font, fill="white", anchor="rs")
+    draw.text((129, h), duration(total), font=font, fill="white", anchor="rs")
 
 
 def draw_text(draw, text, y, font, tick):
@@ -43,11 +43,10 @@ def render(title, artist, time_total, time_current, tick):
     draw = ImageDraw.Draw(img)
     # draw.rectangle((0, 0, 128, 64), fill=(42, 42, 42))
     draw.fontmode = "1"
-    font_offset = -4
-    title_font = ImageFont.truetype("OpenSans-Bold", 14)
-    artist_font = ImageFont.truetype("OpenSans-Light", 14)
-    draw_text(draw, title, 0 + font_offset, title_font, tick)
-    draw_text(draw, artist, 14 + 10 + font_offset, artist_font, tick)
+    title_font = ImageFont.truetype("OpenSansBit-Bold", 13)
+    artist_font = ImageFont.truetype("OpenSansBit-Light", 13)
+    draw_text(draw, title, 0, title_font, tick)
+    draw_text(draw, artist, 25, artist_font, tick)
     draw_progress(draw, time_total, time_current)
     return img
 
