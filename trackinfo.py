@@ -75,5 +75,5 @@ if __name__ == "__main__":
         frame_with_bg.paste(frame, ((bg_w-128)//2, (bg_h-64)//2))
         frames.append(frame_with_bg)
 
-    frames[0].save('demo.gif', format='GIF',
-                   append_images=frames[1:], save_all=True, fps=fps, loop=0)
+    frames[0].save('demo.gif', format='GIF', append_images=frames[1:],
+                   save_all=True, fps=fps, disposal=2, loop=0)
