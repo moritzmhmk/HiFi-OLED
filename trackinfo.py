@@ -19,8 +19,8 @@ def draw_progress(draw, total, current):
 
 
 def draw_text(draw, text, y, font, tick):
-    x = 0
     w, _ = draw.textsize(text, font)
+    x = (128 - w) / 2
     if w > 128:
         offscreen_width = (w - 128)
         pause_ticks = 50
@@ -69,8 +69,8 @@ if __name__ == "__main__":
     bg_draw.rounded_rectangle(
         (margin, margin, rect_w + margin, rect_h + margin), fill="black", width=0, radius=20)
     for i in range(fps * length):
-        frame = render("Could You Be Loved",
-                       "Bob Marley & The Wailers", length, i//fps, i)
+        frame = render("Music Sounds Better With You",
+                       "Stardust", length, i//fps, i)
         frame_with_bg = bg_img.copy()
         frame_with_bg.paste(frame, ((bg_w-128)//2, (bg_h-64)//2))
         frames.append(frame_with_bg)
