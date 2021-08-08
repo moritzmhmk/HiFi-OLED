@@ -10,9 +10,9 @@ def duration(t):
 
 def draw_progress(draw, total, current):
     h = 64
-    draw.rounded_rectangle((0, h-15, 127, h-15+4), fill="black", outline="white",
+    draw.rounded_rectangle((0, h-16, 127, h-16+4), fill="black", outline="white",
                            width=1, radius=4)
-    draw.rectangle((1, h-15, current/total * 128, h-15+4), fill="white")
+    draw.rectangle((1, h-16, 1 + current/total * 127, h-16+4), fill="white")
     font = ImageFont.truetype("DotMatrixDigits", 7)
     draw.text((0, h), duration(current), font=font, fill="white", anchor="ls")
     draw.text((129, h), duration(total), font=font, fill="white", anchor="rs")
