@@ -58,8 +58,9 @@ if __name__ == "__main__":
     length = 42
 
     pixel_per_mm = 128 / 55
-    rect_w = round(300 * pixel_per_mm)
-    rect_h = round(70 * pixel_per_mm)
+    rect_w = round(215 * pixel_per_mm)
+    rect_h = round(50 * pixel_per_mm)
+    rect_r = round(0.25 * 25.4 * pixel_per_mm)
     margin = round(10 * pixel_per_mm)
     bg_w = rect_w + 2 * margin
     bg_h = rect_h + 2 * margin
@@ -67,7 +68,7 @@ if __name__ == "__main__":
     bg_img = Image.new("RGB", (bg_w, bg_h), color=(255, 255, 255))
     bg_draw = ImageDraw.Draw(bg_img)
     bg_draw.rounded_rectangle(
-        (margin, margin, rect_w + margin, rect_h + margin), fill="black", width=0, radius=20)
+        (margin, margin, rect_w + margin, rect_h + margin), fill="black", width=0, radius=rect_r)
     for i in range(fps * length):
         frame = render("Music Sounds Better With You",
                        "Stardust", length, i//fps, i)
