@@ -44,10 +44,10 @@ def draw_text(draw, text, y, font, tick):
 def render(draw, title, artist, time_total, time_current, tick):
     draw.fontmode = "1"
     title_font_file = os.path.join(
-        os.path.dirname(__file__), 'fonts', 'OpenSansBit-Bold.ttf')
+        os.path.dirname(__file__), 'fonts', 'OpenSansBit-Light.ttf')
     title_font = ImageFont.truetype(title_font_file, 13)
     artist_font_file = os.path.join(
-        os.path.dirname(__file__), 'fonts', 'OpenSansBit-Light.ttf')
+        os.path.dirname(__file__), 'fonts', 'OpenSansBit-Bold.ttf')
     artist_font = ImageFont.truetype(artist_font_file, 13)
     draw_text(draw, title, 0, title_font, tick)
     draw_text(draw, artist, 25, artist_font, tick)
