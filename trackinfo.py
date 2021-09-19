@@ -38,17 +38,13 @@ def draw_text(draw, text, y, font, tick):
     draw.text((x, y), text, font=font, fill="white")
 
 
-def render(title, artist, time_total, time_current, tick):
-    img = Image.new("RGB", (128, 64))
-    draw = ImageDraw.Draw(img)
-    # draw.rectangle((0, 0, 128, 64), fill=(42, 42, 42))
+def render(draw, title, artist, time_total, time_current, tick):
     draw.fontmode = "1"
     title_font = ImageFont.truetype("OpenSansBit-Bold", 13)
     artist_font = ImageFont.truetype("OpenSansBit-Light", 13)
     draw_text(draw, title, 0, title_font, tick)
     draw_text(draw, artist, 25, artist_font, tick)
     draw_progress(draw, time_total, time_current)
-    return img
 
 
 if __name__ == "__main__":
@@ -70,8 +66,10 @@ if __name__ == "__main__":
     bg_draw.rounded_rectangle(
         (margin, margin, rect_w + margin, rect_h + margin), fill="black", width=0, radius=rect_r)
     for i in range(fps * length):
-        frame = render("Music Sounds Better With You",
-                       "Stardust", length, i//fps, i)
+        frame = Image.new("RGB", (128, 64))
+        draw = ImageDraw.Draw(frame)
+        render(draw, "Music Sounds Better With You",
+               "Stardust", length, i//fps, i)
         frame_with_bg = bg_img.copy()
         frame_with_bg.paste(frame, ((bg_w-128)//2, (bg_h-64)//2))
         frames.append(frame_with_bg)
