@@ -1,3 +1,4 @@
+import os
 from PIL import Image, ImageFont, ImageDraw, ImageEnhance
 
 
@@ -13,7 +14,9 @@ def draw_progress(draw, total, current):
     draw.rounded_rectangle((0, h-16, 127, h-16+4), fill="black", outline="white",
                            width=1, radius=4)
     draw.rectangle((1, h-16, 1 + current/total * 127, h-16+4), fill="white")
-    font = ImageFont.truetype("DotMatrixDigits", 7)
+    font_file = os.path.join(os.path.dirname(
+        __file__), 'fonts', 'DotMatrixDigits.ttf')
+    font = ImageFont.truetype(font_file, 7)
     draw.text((0, h), duration(current), font=font, fill="white", anchor="ls")
     draw.text((129, h), duration(total), font=font, fill="white", anchor="rs")
 
@@ -40,8 +43,12 @@ def draw_text(draw, text, y, font, tick):
 
 def render(draw, title, artist, time_total, time_current, tick):
     draw.fontmode = "1"
-    title_font = ImageFont.truetype("OpenSansBit-Bold", 13)
-    artist_font = ImageFont.truetype("OpenSansBit-Light", 13)
+    title_font_file = os.path.join(
+        os.path.dirname(__file__), 'fonts', 'OpenSansBit-Bold.ttf')
+    title_font = ImageFont.truetype(title_font_file, 13)
+    artist_font_file = os.path.join(
+        os.path.dirname(__file__), 'fonts', 'OpenSansBit-Light.ttf')
+    artist_font = ImageFont.truetype(artist_font_file, 13)
     draw_text(draw, title, 0, title_font, tick)
     draw_text(draw, artist, 25, artist_font, tick)
     draw_progress(draw, time_total, time_current)
