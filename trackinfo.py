@@ -35,7 +35,7 @@ def draw_text(draw, text, y, font, tick):
         else:
             o = 2*offscreen_width - (i - pause_ticks*2)
         x = -o
-    draw.text((x, y), text, font=font, fill=(255, 255, 255))
+    draw.text((x, y), text, font=font, fill="white")
 
 
 def render(title, artist, time_total, time_current, tick):
